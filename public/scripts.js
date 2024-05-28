@@ -32,6 +32,7 @@ const stopMyFeed = e=>{
 }
 //RogStrix G531GT-BQ132
 
+
 document.querySelector('#share').addEventListener('click',e=>getMicAndCamera(e));
 document.querySelector("#show-video").addEventListener('click',(e)=>showMyFeed(e))
 document.querySelector("#stop-video").addEventListener('click',(e)=>stopMyFeed(e))
