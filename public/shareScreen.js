@@ -1,6 +1,14 @@
-const shareScreen =()=>{
- mediaStream = await navigator.mediaDevices.getDisplayMedia();
-    if(!str){
-        alert("Stream hasn`t been created!");
+const  shareScreen =async()=>{
+    const options ={
+        video: true,
+        audio: false,
+        surfaceSwitching:'include',
     }
+
+    try {
+        mediaStream = await navigator.mediaDevices.getDisplayMedia(options);
+    } catch (e) {
+        console.log(e)
+    }
+
 }

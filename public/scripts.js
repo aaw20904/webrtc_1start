@@ -1,5 +1,5 @@
 const videoEl = document.querySelector('#my-video');
-const mediaStream = false;
+let mediaStream = false;
 let stream = null;
 const constraints = {
     audio: true,
@@ -52,22 +52,23 @@ document.querySelector("#show-video").addEventListener('click',(e)=>showMyFeed(e
 document.querySelector("#stop-video").addEventListener('click',(e)=>stopMyFeed(e))
 document.querySelector("#change-size").addEventListener('click',(e)=>{
         changeVideoSize(stream, document.querySelector("#vid-width").value, document.querySelector("#vid-height").value)})
-        document.querySelector("#start-record").addEventListener('click',(e)=>{
-            if(!stream){
+
+document.querySelector("#start-record").addEventListener('click',(e)=>{
+            if(!mediaStream){
                 alert("no stream to record!");
                 return;
             }
-            startRecording(stream)
+            startRecording(mediaStream)
                 changeButtons([
                     'blue','grey','blue','grey','grey','blue','grey','grey'
                 ])
             })
-        document.querySelector("#stop-record").addEventListener('click',(e)=>{stopRecording(stream)
+        document.querySelector("#stop-record").addEventListener('click',(e)=>{stopRecording(mediaStream)
             changeButtons([
                 'blue','grey','blue','blue','blue','grey','blue','grey'
              ])
         })
-        document.querySelector("#play-record").addEventListener('click',(e)=>{playRecording(stream)
+        document.querySelector("#play-record").addEventListener('click',(e)=>{playRecording(mediaStream)
             changeButtons([
                 'blue','grey','grey','grey','grey','blue','grey','grey'
              ])
