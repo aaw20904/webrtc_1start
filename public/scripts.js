@@ -1,5 +1,5 @@
 const videoEl = document.querySelector('#my-video');
-let mediaStream = false;
+const mediaStream = false;
 let stream = null;
 const constraints = {
     audio: true,
@@ -12,6 +12,8 @@ const getMicAndCamera = async()=>{
             'green','grey','grey','grey','grey','grey','grey','grey'
          ])
          stream = await navigator.mediaDevices.getUserMedia(constraints);
+         let devices = await navigator.mediaDevices.enumerateDevices();
+         console.log(devices)
           
           
           
@@ -52,23 +54,22 @@ document.querySelector("#show-video").addEventListener('click',(e)=>showMyFeed(e
 document.querySelector("#stop-video").addEventListener('click',(e)=>stopMyFeed(e))
 document.querySelector("#change-size").addEventListener('click',(e)=>{
         changeVideoSize(stream, document.querySelector("#vid-width").value, document.querySelector("#vid-height").value)})
-
 document.querySelector("#start-record").addEventListener('click',(e)=>{
-            if(!mediaStream){
+            if(!stream){///you could use mediaStream to write screenshoots
                 alert("no stream to record!");
                 return;
             }
-            startRecording(mediaStream)
+            startRecording(stream)
                 changeButtons([
                     'blue','grey','blue','grey','grey','blue','grey','grey'
                 ])
             })
-        document.querySelector("#stop-record").addEventListener('click',(e)=>{stopRecording(mediaStream)
+        document.querySelector("#stop-record").addEventListener('click',(e)=>{stopRecording(stream)
             changeButtons([
                 'blue','grey','blue','blue','blue','grey','blue','grey'
              ])
         })
-        document.querySelector("#play-record").addEventListener('click',(e)=>{playRecording(mediaStream)
+        document.querySelector("#play-record").addEventListener('click',(e)=>{playRecording(stream)
             changeButtons([
                 'blue','grey','grey','grey','grey','blue','grey','grey'
              ])
