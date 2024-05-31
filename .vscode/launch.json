@@ -3,13 +3,29 @@
     "configurations": [
         {
             "type": "node",
+            "request": "attach",
+            "name": "Attach to Program",
+            "port": 9229,
+            "address": "localhost",
+            "restart": true,
+            "sourceMaps": false,
+            "outFiles": ["${workspaceFolder}/**/*.js"]
+        },
+        {
+            "type": "node",
             "request": "launch",
             "name": "Launch Program with sudo",
             "runtimeExecutable": "sudo",
-            "runtimeArgs": ["node"],
-            "program": "${workspaceFolder}/app.js",
+            "runtimeArgs": ["node", "--inspect=0.0.0.0:9229", "${workspaceFolder}/app.js"],
             "skipFiles": ["<node_internals>/**"],
             "outFiles": ["${workspaceFolder}/**/*.js"]
         }
+    ],
+    "compounds": [
+        {
+            "name": "Launch and Attach",
+            "configurations": ["Launch Program with sudo", "Attach to Program"]
+        }
     ]
 }
+
